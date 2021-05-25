@@ -1,6 +1,6 @@
 # SQL_Library_Manager
 
-Web app provides a more intuitve way to manage a book collection than by entering data manually.
+Web app provides an intuitve way to manage a book collection.
 
 ## Features
 
@@ -11,7 +11,7 @@ Add a book to the database. You will receive an error if the entry is missing an
 ### 👉🏼 Update
 Update the information of a book in the database. You will receive an error if the entry is missing an author or title.
 ### 👉🏼 Delete
-Permanently deletes a book from the database. Asks the user to confirm that they are sure before deleting.
+Permanently deletes a book from the database. You will be asked to confirm that you are sure before deleting.
 
 ## Tech Used
 
