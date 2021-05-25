@@ -1,10 +1,10 @@
 body {
   padding: 10px 50px 50px;
-  font: 18px "Garamond", serif;
+  font: 18px Monospace, serif;
 }
 
 a {
-  color: #019875;
+  color: #0d0e0f;
   text-decoration: none;
   font-weight: bold;
   transition: 0.4s;
@@ -16,11 +16,11 @@ a {
 
 a.button, input[type=submit] {
   color: white;
-  background: #019875;
-  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: #c97413;
+  font-family: Monospace, Helvetica, Arial, sans-serif;
   padding: 10px 14px 12px;
   font-size: 14px;
-  border-radius: 2px;
+  border-radius: 8px;
   cursor: pointer;
 }
 
@@ -34,7 +34,7 @@ input[type=submit] {
 }
 
   a.button:hover, input[type=submit]:hover {
-    background-color: #01b189;
+    background-color: #ad630e;
   }
 
 p {
@@ -64,7 +64,7 @@ tr {
 }
 
 tr:nth-child(2n) {
-  background: #E7E7E7;
+  background: #e7eff7;
 }
 
 td {
@@ -93,5 +93,5 @@ input[type=text] {
 }
 
 .error {
-  color: rgb(236, 15, 15);
+  color: rgb(155, 14, 124);
 }
