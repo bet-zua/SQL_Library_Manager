@@ -37,14 +37,14 @@ app.use('/static', express.static('public'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 
+// 404 error handler
 app.use(function(req, res, next) {
   const err = new Error();
   err.status = 404;
   res.status(404).render('page-not-found', { err });
 });
 
-// error handler
+// global error handler
 app.use(function(err, req, res, next) {
   if(err.status === 404){
     res.status(404).render('page-not-found', { err });
