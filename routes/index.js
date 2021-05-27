@@ -16,9 +16,9 @@ function asyncHandler(cb){
 }
 
 /* GET Home route should redirect to the /books route. */
-router.get('/', function (req, res, next) {
-  res.redirect("/books");
-});
+router.get('/', asyncHandler(async (req, res, next) => {
+  res.redirect('/books');
+}));
 
 /* Show full list of books. */
 router.get('/books', asyncHandler(async (req, res, next) => {
@@ -54,7 +54,9 @@ router.get("/books/:id", asyncHandler(async (req, res, next) => {
   if(book) {
     res.render('update-book', { book });
   } else {
-    next()
+    const err = new Error();
+    err.status = 404;
+    next(err);
   }
 }));
 
@@ -63,11 +65,12 @@ router.post('/books/:id', asyncHandler(async (req, res, next) => {
   let book;
   try {
     book = await Book.findByPk(req.params.id);
-    if(book) {
-      await book.update(req.body);
+    if(book){
       res.redirect("/books"); 
-    } else {
-      res.sendStatus(404);
+    }else{
+      const err = new Error();
+      err.status = 404;
+      next(err); 
     }
   } catch (error) {
     if(error.name === "SequelizeValidationError") {
@@ -85,7 +88,10 @@ router.post('/books/:id/delete', asyncHandler(async (req ,res, next) => {
     await book.destroy();
     res.redirect("/books");
   } else {
-    res.sendStatus(404);
+    const err = new Error();
+    err.status = 404;
+    err.message = "Looks like the book you requested doesn't exist in our library."
+    next(err); 
   }
 }));
 

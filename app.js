@@ -37,20 +37,21 @@ app.use('/static', express.static('public'));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-// catch 404 and forward to error handler
+// catch 404 
 app.use(function(req, res, next) {
-  const error = new Error('The page you are looking for does not exist.');
-  error.status = 404;
-  res.render('page-not-found', { error });
+  const err = new Error();
+  err.status = 404;
+  res.status(404).render('page-not-found', { err });
 });
 
 // error handler
 app.use(function(err, req, res, next) {
-  err.message = (err.message || "You've encountered a server-side error.");
-  err.status = (err.status || 500);
-
-  // render the error page
-  res.render('error', { err });
+  if(err.status === 404){
+    res.status(404).render('page-not-found', { err });
+  } else {
+    err.message = (err.message || "You've encountered a server-side error.");
+    res.status(err.status||500).render('error', {err})
+  }
 });
 
 module.exports = app;
